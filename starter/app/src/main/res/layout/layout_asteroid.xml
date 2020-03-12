@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.Asteroid" />
+        <variable
+            name="onAsteroidClickedListener"
+            type="com.udacity.asteroidradar.adapters.OnAsteroidClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        app:cardUseCompatPadding="true"
+        android:onClick="@{() -> onAsteroidClickedListener.onAsteroidClicked(asteroid)}"
+        app:cardBackgroundColor="@color/app_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/asteroid_name_textview"
+                android:layout_width="wrap_content"
+                android:text="@{asteroid.codename}"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                tools:text="The Name" />
+
+            <TextView
+                android:id="@+id/close_approach_date"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/asteroid_name_textview"
+                android:layout_marginTop="8dp"
+                android:text="@{asteroid.closeApproachDate}"
+                tools:text="2020-09-09" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                app:statusIcon="@{asteroid.potentiallyHazardous}"
+                android:layout_alignParentEnd="true"
+                tools:src="@drawable/ic_status_potentially_hazardous"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
