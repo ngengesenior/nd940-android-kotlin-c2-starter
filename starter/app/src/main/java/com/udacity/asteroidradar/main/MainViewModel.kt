@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.BuildConfig
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.room.AppDatabase
@@ -74,9 +75,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     val imageResponse = repository.getImageOfTheDay()
                     if (imageResponse.isSuccessful) {
                         imageOfTheDay.value = imageResponse.body()!!
-                    } else {
-
-                    }
+                    } 
                 }
 
             }catch (unkHost:UnknownHostException){
@@ -93,7 +92,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     suspend fun getNewAsteroids():List<Asteroid>? {
         return withContext(Dispatchers.IO) {
             try {
-                val response = webService.getAsteroids()
+                val response = webService.getAsteroids(BuildConfig.API_KEY)
 
                 if (response.isSuccessful){
                     return@withContext parseAsteroidsJsonResult(JSONObject(response.body()))
