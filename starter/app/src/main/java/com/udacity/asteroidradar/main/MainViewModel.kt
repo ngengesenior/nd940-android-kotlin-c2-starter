@@ -75,7 +75,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     val imageResponse = repository.getImageOfTheDay()
                     if (imageResponse.isSuccessful) {
                         imageOfTheDay.value = imageResponse.body()!!
-                    } 
+                    }
                 }
 
             }catch (unkHost:UnknownHostException){
