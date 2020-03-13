@@ -50,6 +50,7 @@
                 android:id="@+id/imageView"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
+                android:contentDescription="@string/is_hazardous_content"
                 app:statusIcon="@{asteroid.potentiallyHazardous}"
                 android:layout_alignParentEnd="true"
                 tools:src="@drawable/ic_status_potentially_hazardous"
