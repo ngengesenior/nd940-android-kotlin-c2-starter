@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.room
 
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.webservice.NasaAsteroidWebService
+import timber.log.Timber
 
 class Repository(val asteroidDao: AsteroidDao) {
 
@@ -13,6 +14,7 @@ class Repository(val asteroidDao: AsteroidDao) {
 
     suspend fun insertAsteroids(asteroids:ArrayList<Asteroid>) {
         for (asteroid in asteroids) {
+            Timber.d("Saving to db $asteroid")
             asteroidDao.insertAsteroid(asteroid)
         }
     }

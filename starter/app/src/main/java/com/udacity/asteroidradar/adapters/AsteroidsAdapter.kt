@@ -15,7 +15,8 @@ class AsteroidsAdapter(var asteroids:List<Asteroid>, var onAsteroidClickListener
 
     override fun getItemCount() = asteroids.size
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
-        holder.bind(asteroids[position],onAsteroidClickListener)
+        val asteroid = asteroids[position]
+        holder.bind(asteroid,onAsteroidClickListener)
     }
 
     fun setList(asteroidsList: List<Asteroid>) {
@@ -42,6 +43,6 @@ class AsteroidViewHolder(val layoutAsteroidBinding: LayoutAsteroidBinding):Recyc
     }
 }
 
-class OnAsteroidClickListener(var listener:(asteroid:Asteroid) -> Unit) {
-    fun onAsteroidClicked(anAsteroid:Asteroid) = listener(anAsteroid)
+class OnAsteroidClickListener(var listener:(asteroid:Asteroid)->Unit) {
+    fun onAsteroidClicked(asteroid:Asteroid) = listener(asteroid)
 }

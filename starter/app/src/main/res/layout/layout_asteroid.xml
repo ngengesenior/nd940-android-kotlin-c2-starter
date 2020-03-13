@@ -15,9 +15,9 @@
 
     <androidx.cardview.widget.CardView
         app:cardUseCompatPadding="true"
-        android:onClick="@{() -> onAsteroidClickedListener.onAsteroidClicked(asteroid)}"
         app:cardBackgroundColor="@color/app_background"
         android:layout_width="match_parent"
+        android:onClick="@{()-> onAsteroidClickedListener.onAsteroidClicked(asteroid)}"
         android:layout_height="wrap_content">
 
         <RelativeLayout

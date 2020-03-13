@@ -55,8 +55,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
                 }
             } catch (e: Exception) {
-                _allAsteroids.value = repository.getAsteroidsLiveData().value
-                Timber.d("Generic error ${e.message} ${repository.getAsteroidsLiveData().value}")
+
+                val asteroidsData = repository.getAsteroidsLiveData().value
+                if (asteroidsData != null) {
+                    _allAsteroids.value = asteroidsData
+                } else {
+                    _allAsteroids.value = emptyList()
+                }
             }
         }
         }
@@ -92,20 +97,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
                 if (response.isSuccessful){
                     return@withContext parseAsteroidsJsonResult(JSONObject(response.body()))
-                } else return@withContext  null
+                } else return@withContext  emptyList<Asteroid>()
             } catch (ex:UnknownHostException) {
                 Timber.d("No internet")
-                return@withContext null
+                return@withContext emptyList<Asteroid>()
             }
 
             catch (connectEx:SocketTimeoutException) {
                 Timber.d("Socket time out ${connectEx.message}")
-                return@withContext null
+                return@withContext emptyList<Asteroid>()
             }
 
             catch (ex:Exception) {
                 Timber.d("Exception ${ex.message}")
-                return@withContext null
+                return@withContext emptyList<Asteroid>()
             }
 
         }
