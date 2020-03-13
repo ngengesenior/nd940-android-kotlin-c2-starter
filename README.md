@@ -134,7 +134,22 @@ The application built contains:
 
 - App works in multiple screen sizes and orientations, also it provides talk back and push button navigation.
 
+  ## How to Run Project
+  - Get an API KEY from https://api.nasa.gov/ 
+  - Add the API KEY in gradle.properties as follows and then add the key in defaultConfig block in app level gradle file
   
+  ```groovy
+API_KEY="YourAPIKey"
+```
+
+
+```groovy
+defaultConfig{
+        
+buildConfigField("String","API_KEY",API_KEY)
+
+}
+```
 
 
 ## Built With
