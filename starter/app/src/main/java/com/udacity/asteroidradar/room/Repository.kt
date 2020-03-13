@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.room
 
 import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.BuildConfig
 import com.udacity.asteroidradar.webservice.NasaAsteroidWebService
 import timber.log.Timber
 
@@ -10,7 +11,7 @@ class Repository(val asteroidDao: AsteroidDao) {
     private val client:NasaAsteroidWebService
     get() = NasaAsteroidWebService.create()
 
-    suspend fun getAsteroidsFromInternet() = client.getAsteroids()
+    suspend fun getAsteroidsFromInternet() = client.getAsteroids(BuildConfig.API_KEY)
 
     suspend fun insertAsteroids(asteroids:ArrayList<Asteroid>) {
         for (asteroid in asteroids) {
@@ -24,7 +25,7 @@ class Repository(val asteroidDao: AsteroidDao) {
     fun getAsteroidsLiveData() = asteroidDao.getAllAsteroids()
     //val asteroids:LiveData<List<Asteroid>> = asteroidDao.getAllAsteroids()
 
-    suspend fun getImageOfTheDay() = client.getImageOfTheDay()
+    suspend fun getImageOfTheDay() = client.getImageOfTheDay(BuildConfig.API_KEY)
 
 
 

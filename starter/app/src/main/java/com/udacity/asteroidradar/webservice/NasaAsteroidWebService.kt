@@ -12,15 +12,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 interface NasaAsteroidWebService {
 
 
-    @GET("neo/rest/v1/feed?api_key=DEMO_KEY")
-    suspend fun getAsteroids():Response<String>
-    @GET("planetary/apod?api_key=DEMO_KEY")
-    suspend fun getImageOfTheDay():Response<PictureOfDay>
+    @GET("neo/rest/v1/feed")
+    suspend fun getAsteroids(@Query("api_key") apiKey: String):Response<String>
+    @GET("planetary/apod")
+    suspend fun getImageOfTheDay(@Query("api_key") apiKey:String):Response<PictureOfDay>
 
 
 
