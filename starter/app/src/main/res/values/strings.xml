@@ -22,4 +22,8 @@
     <string name="image_of_the_day_content_description">Image Of the Day</string>
     <string name="is_hazardous_content">Image to show whether an asteroid is harzadous or not</string>
     <string name="help_button">Help button</string>
+    <string name="asteroid_distance_description">The distance of asteroid from the earth</string>
+    <string name="relative_velocity_description">Relative velocity of asteroid</string>
+    <string name="closest_approach_content">The closest approach date of the asteroid to the earth</string>
+    <string name="estimated_diameter_content">Estimated diameter of asteroid</string>
 </resources>
