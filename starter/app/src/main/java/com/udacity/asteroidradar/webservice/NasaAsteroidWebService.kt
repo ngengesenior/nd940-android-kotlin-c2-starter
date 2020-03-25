@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.webservice
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.PictureOfDay
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -19,7 +20,7 @@ interface NasaAsteroidWebService {
 
 
     @GET("neo/rest/v1/feed")
-    suspend fun getAsteroids(@Query("api_key") apiKey: String):Response<String>
+    suspend fun getAsteroids(@Query("api_key") apiKey: String, @Query("start_date") startDate:String):Response<String>
     @GET("planetary/apod")
     suspend fun getImageOfTheDay(@Query("api_key") apiKey:String):Response<PictureOfDay>
 
@@ -44,6 +45,6 @@ interface NasaAsteroidWebService {
             .build()
             .create(NasaAsteroidWebService::class.java)
 
-        fun create(): NasaAsteroidWebService = create(HttpUrl.parse("https://api.nasa.gov/")!!)
+        fun create(): NasaAsteroidWebService = create(HttpUrl.parse(Constants.BASE_URL)!!)
     }
 }
